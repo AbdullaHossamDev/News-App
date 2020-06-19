@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatNativeDateModule } from '@angular/material/core';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatSelectModule, 
     MatMenuModule,
     MatNativeDateModule,
-    ClipboardModule
+    ClipboardModule,
+    MatSnackBarModule
   ],
   exports:[
     MatButtonModule,
@@ -41,7 +43,8 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
     MatSelectModule, 
     MatMenuModule,
     MatNativeDateModule,
-    ClipboardModule
+    ClipboardModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

@@ -29,16 +29,15 @@ export class AuthComponent implements OnInit {
   register(formData){
     this.authServ.register(formData).subscribe(
       (data: any) => {
-        console.log('data: ', data)
         if(data.status == 200){
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('id', data.id);
-          localStorage.setItem('name', data.name);
-          // this.router.navigate(['/home'])
+          localStorage.setItem('token', data.body.token);
+          localStorage.setItem('id', data.body.id);
+          localStorage.setItem('name', data.body.userName);
 
           this.password = undefined;
           this.suggestedPassword = undefined;
           this.dialogRef.close() 
+          this.authServ.snackBar('You are registered and logged in');
         }
       },
       (err) => {
@@ -55,17 +54,16 @@ export class AuthComponent implements OnInit {
   }
 
   login(formData){
-    console.log('formData in login', formData)
     this.authServ.login(formData).subscribe(
       (data: any) => {
-        console.log('data: ', data)
         if(data.status == 200){
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('id', data.id);
-          localStorage.setItem('name', data.name);
-          // this.router.navigate(['/home'])
+          localStorage.setItem('token', data.body.token);
+          localStorage.setItem('id', data.body.id);
+          localStorage.setItem('name', data.body.userName);
 
           this.dialogRef.close() 
+          this.authServ.snackBar('You are logged in');
+
         }
       },
       (err) => {

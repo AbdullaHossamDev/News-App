@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   register(userData){
@@ -34,6 +36,15 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('name');
+
+    this.snackBar('You are logged out');
     // this.router.navigate(['/auth']);
+  }
+
+  snackBar(msg){
+    console.log('msg: ',msg)
+    this._snackBar.open(msg, 'Ok', {
+      duration: 2000,
+    });
   }
 }
