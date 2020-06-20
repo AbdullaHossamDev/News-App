@@ -1,0 +1,23 @@
+<section class="base_page_color p-0" >
+  <div class="container p-0">
+    <div class="mb-3">
+      <div class="card mb-3 w-100 m-auto">
+        <img [src]="data.urlToImage" class="card-img-top w-100 m-auto">
+        <div class="card-body position-relative">
+
+          <h2 class="text-right card-title mb-0"><a href="http://www.{{data.source.name}}"
+              target="_blank">{{data.source.name}}</a></h2>
+          <h3 class="card-subtitle mb-2 text-muted text-right">{{data.author}}</h3>
+          <h3 class="card-text text-right" dir="rtl">{{data.title}}</h3>
+          <h4 class="card-text text-right text-muted" dir="rtl">{{data.description}}</h4>
+          <h4 class="card-text mb-0"><small class="text-muted">
+              <div>Published Date: {{data.publishedAt | date:"MMM d, y h:mm a"}}</div>
+            </small></h4>
+          <h4 class="card-text"><small class="text-muted">
+              <div>New link: <a href="{{data.url}}" target="_blank">Link</a></div>
+            </small></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

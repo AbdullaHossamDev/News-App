@@ -15,6 +15,8 @@ import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 import { TokenInterceptorService } from './services/tokenInterceptor/token-interceptor.service';
 import { ErrorViewerComponent } from './components/error-viewer/error-viewer.component';
 import { ErrorHandlerService } from './services/errorHandler/error-handler.service';
+import { NewsComponent } from './components/news/news.component';
+import { NewViewComponent } from './components/new-view/new-view.component';
 
 
 @NgModule({
@@ -23,6 +25,11 @@ import { ErrorHandlerService } from './services/errorHandler/error-handler.servi
     AuthComponent,
     TopbarComponent,
     ErrorViewerComponent,
+    NewsComponent,
+    NewViewComponent,
+  ],
+  entryComponents: [
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +41,11 @@ import { ErrorHandlerService } from './services/errorHandler/error-handler.servi
 
   ],
   providers: [AuthService, AuthGuardGuard, ErrorHandlerService,
-  {
-    provide: HTTP_INTERCEPTORS,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-  }],
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

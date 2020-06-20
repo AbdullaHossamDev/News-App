@@ -32,19 +32,23 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getName(){
+    return localStorage.getItem('userName');
+  }
+
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('name');
 
     this.snackBar('You are logged out');
-    // this.router.navigate(['/auth']);
+    this.router.navigate(['/home']);
   }
 
   snackBar(msg){
     console.log('msg: ',msg)
-    this._snackBar.open(msg, 'Ok', {
-      duration: 2000,
+    this._snackBar.open(msg, '', {
+      duration: 3000,
     });
   }
 }

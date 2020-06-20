@@ -1,0 +1,83 @@
+<div>
+  <div class="row base_page_color m-0 mt-4">
+    <div class=" col-md-3 position-sticky base_page_color ml-0 mr-0 position-relative"
+      style=" top: 50px;right: 0;height: 683px;" *ngIf="displayedNews">
+      <div class="card leftDiv bg-light">
+        <div class="card-body">
+          <h2 class="text-success">Hello {{userName ? userName: '' }}</h2>
+          <p class="card-text">Welcome to our website.</p>
+        </div>
+      </div>
+    </div>
+    <div class="loading base_page_color col-md-6 ml-0 mr-0" *ngIf="!displayedNews">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <section class="base_page_color pt-5 pb-5 col-md-6" *ngIf="displayedNews">
+      <div class="container">
+        <div class="mb-3" *ngFor="let new of displayedNews; index as ind">
+          <div class="card mb-3 w-100 m-auto" *ngIf="ind < numDisplayNews">
+            <img [src]="new.urlToImage" class="card-img-top w-100 m-auto">
+            <div class="card-body position-relative">
+              <button class="btn drop dropdown-toggle dropdown-toggle-split" [matMenuTriggerFor]="menu"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <span class="fa fa-star starPosition checked" (click)="deleteFromFav(new, ind)" *ngIf="new._id"></span>
+              <span class="fa fa-star starPosition" (click)="addToFav(new)" *ngIf="!new._id"></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="newView(new)">View</button>
+                <button mat-menu-item (click)="addToFav(new)" *ngIf="!new._id">Add to favorites</button>
+                <button mat-menu-item class="alert-danger" (click)="deleteFromFav(new, ind)" *ngIf="new._id">Delete from
+                  favorites </button>
+              </mat-menu>
+              <h2 class="text-right card-title mb-0"><a href="http://www.{{new.source.name}}"
+                  target="_blank">{{new.source.name}}</a></h2>
+              <h3 class="card-subtitle mb-2 text-muted text-right">{{new.author}}</h3>
+              <h3 class="card-text text-right" dir="rtl">{{new.title}}</h3>
+              <h4 class="card-text mb-0"><small class="text-muted">
+                  <div>Published Date: {{new.publishedAt | date:"MMM d, y h:mm a"}}</div>
+                </small></h4>
+              <h4 class="card-text"><small class="text-muted">
+                  <div>New link: <a href="{{new.url}}" target="_blank">Link</a></div>
+                </small></h4>
+            </div>
+          </div>
+        </div>
+        <div class="w-50 m-auto" (click)="increasePostDisplay()">
+          <button class="btn btn-block btn-outline-secondary mb-1"
+            *ngIf="numDisplayNews <= displayedNews.length">Seemore</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="col-md-3 position-sticky base_page_color ml-0 mr-0 position-relative"
+      style=" top: 50px;right: 0;height: 683px;" *ngIf="displayedNews" >
+      <form #form="ngForm" (ngSubmit)="filter(form.value)" >
+        <div class="card rightDiv">
+          <div class="card-header h4">Filter<i class="fa fa-filter"></i></div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h3 class="card-title">Countries</h3>
+              <input type="checkbox" ngModel id="egypt" name="egypt" value="EG" class="m-2" [disabled]="status == 'favorites'">
+              <label for="egypt">Egypt</label><br>
+              <input type="checkbox" ngModel id="uae" name="uae" value="UAE" class="m-2" [disabled]="status == 'favorites'">
+              <label for="uae">United Arab Emirates</label><br>
+            </li>
+            <li class="list-group-item">
+              <h3 class="card-title">Categories</h3>
+              <input type="checkbox" ngModel id="business" name="business" value="Business" class="m-2" [disabled]="status == 'favorites'">
+              <label for="business">Business</label><br>
+              <input type="checkbox" ngModel id="sports" name="sports" value="Sports" class="m-2" [disabled]="status == 'favorites'">
+              <label for="sports">Sports</label><br>
+            </li>
+            <li class="list-group-item"><input type="submit" class="btn btn-light" value="Filter" [disabled]="status == 'favorites'"></li>
+          </ul>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

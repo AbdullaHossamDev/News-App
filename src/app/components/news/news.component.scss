@@ -1,0 +1,49 @@
+.loading{
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+}
+
+.base_page_color{
+  background-color: #e9ebee;
+}
+
+.drop{
+  position: absolute;
+  top: 8%;
+  left: 2%;
+}
+
+.checked {
+  color: orange;
+}
+
+.starPosition{
+  position: absolute;
+  top: 12%;
+  left: 10%;
+  font-size: 18px;
+}
+
+.starPosition:hover{
+  cursor: pointer;
+}
+
+.leftDiv{
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 67%;
+  height: 200px;
+}
+
+.rightDiv{
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 67%;
+  height: 200px;
+}

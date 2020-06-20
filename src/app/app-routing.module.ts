@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './components/auth/auth.component';
+import { NewsComponent } from './components/news/news.component';
+import { AuthGuardGuard } from './services/authGuard/auth-guard.guard';
 
 
 const routes: Routes = [
-  // {
-  //   path: '', redirectTo: 'auth', pathMatch: 'full'
-  // },
-  // {
-  //   path: 'auth', component: AuthComponent
-  // }
+  {
+    path: '', redirectTo: 'home/news', pathMatch: 'full'
+  },
+  {
+    path: 'home', redirectTo: 'home/news', pathMatch: 'full'
+  },
+  {
+    path: 'home/:status', component: NewsComponent
+  },
+  {
+    path: 'home/favorites', component:NewsComponent, canActivate:[AuthGuardGuard]
+  }
+  ,
+  {
+    path: '**', redirectTo:'home/news', pathMatch:'full'
+  }
 ];
 
 @NgModule({

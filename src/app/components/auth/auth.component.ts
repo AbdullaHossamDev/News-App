@@ -32,7 +32,7 @@ export class AuthComponent implements OnInit {
         if(data.status == 200){
           localStorage.setItem('token', data.body.token);
           localStorage.setItem('id', data.body.id);
-          localStorage.setItem('name', data.body.userName);
+          localStorage.setItem('userName', data.body.userName);
 
           this.password = undefined;
           this.suggestedPassword = undefined;
@@ -59,11 +59,11 @@ export class AuthComponent implements OnInit {
         if(data.status == 200){
           localStorage.setItem('token', data.body.token);
           localStorage.setItem('id', data.body.id);
-          localStorage.setItem('name', data.body.userName);
+          localStorage.setItem('userName', data.body.userName);
 
           this.dialogRef.close() 
           this.authServ.snackBar('You are logged in');
-
+          this.router.navigate(['/home']);
         }
       },
       (err) => {
