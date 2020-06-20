@@ -30,15 +30,6 @@
             <input type="text" class="input" name="email" ngModel email required>
           </div>
           <div class="group">
-            <label for="pass" class="label">Password</label>
-            <input type="password" class="input" name="password" data-type="password" [(ngModel)]="password" required
-              (focus)="showElm()">
-            <div id="suggest" #suggest class="suggestion" (click)="selectSuggest()">
-              <button type="button" class="p-3 bg-light rounded-pill m-auto input text-dark" [cdkCopyToClipboard]="suggestedPassword">
-                suggest password: {{suggestedPassword}} <small class="text-muted">Copy</small> </button>
-            </div>
-          </div>
-          <div class="group">
             <label for="pass" class="label mb-0">Birth date</label>
             <mat-form-field class="pt-0 mt-0 w-100">
               <input matInput [matDatepicker]="picker" name="birthDate" class="input" ngModel required>

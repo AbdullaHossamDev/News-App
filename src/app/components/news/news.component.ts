@@ -75,6 +75,11 @@ export class NewsComponent implements OnInit {
             this.displayedNews = [...data.body]
             this.numDisplayNews = 10;
             this.filterDisplayed()
+          }else{
+            this.authServ.snackBar(`You don't have any new in your favorite list`, 5000)
+            setTimeout(()=>{
+              this.router.navigate(['/home/news'])
+            },5000)
           }
         }
       },

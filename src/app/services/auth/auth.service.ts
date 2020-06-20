@@ -45,10 +45,10 @@ export class AuthService {
     this.router.navigate(['/home']);
   }
 
-  snackBar(msg){
+  snackBar(msg, d?){
     console.log('msg: ',msg)
     this._snackBar.open(msg, '', {
-      duration: 3000,
+      duration: d || 3000,
     });
   }
 }

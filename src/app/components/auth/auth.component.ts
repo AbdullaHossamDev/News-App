@@ -30,14 +30,7 @@ export class AuthComponent implements OnInit {
     this.authServ.register(formData).subscribe(
       (data: any) => {
         if(data.status == 200){
-          localStorage.setItem('token', data.body.token);
-          localStorage.setItem('id', data.body.id);
-          localStorage.setItem('userName', data.body.userName);
-
-          this.password = undefined;
-          this.suggestedPassword = undefined;
-          this.dialogRef.close() 
-          this.authServ.snackBar('You are registered and logged in');
+          this.authServ.snackBar('Please check your mail to sign in', 10000);
         }
       },
       (err) => {
@@ -47,6 +40,7 @@ export class AuthComponent implements OnInit {
         else if(err.status == 400){
           this.errServ.showError('Please fill all the requirments!')
         }else{
+          console.log('err:',err)
           this.errServ.showError('Please try again later !')
         }
       }
@@ -78,27 +72,4 @@ export class AuthComponent implements OnInit {
       }
     )
   }
-
-  
-
-  selectSuggest(){
-    this.password = this.suggestedPassword;
-    this.renderer.setStyle(this.suggest.nativeElement, 'display', 'none');
-  }
-
-  showElm() {
-    this.suggestedPassword = this.suggestedPassword ? this.suggestedPassword :  this.makeRandom();
-    this.renderer.setStyle(this.suggest.nativeElement, 'display', 'block');
-  }
-
-  makeRandom() {
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890/[]\=-)(*&^%$#@!~0123456789";
-    const lengthOfCode = 10;
-    let text = "";
-    for (let i = 0; i < lengthOfCode; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
-
 }
