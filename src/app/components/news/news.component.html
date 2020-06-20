@@ -4,7 +4,7 @@
       style=" top: 50px;right: 0;height: 683px;" *ngIf="displayedNews">
       <div class="card leftDiv bg-light">
         <div class="card-body">
-          <h2 class="text-success">Hello {{userName ? userName: '' }}</h2>
+          <h2 class="text-success">Hello {{authServ.isLoggedIn() ? authServ.getName(): '' }}</h2>
           <p class="card-text">Welcome to our website.</p>
         </div>
       </div>

@@ -39,7 +39,7 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('id');
-    localStorage.removeItem('name');
+    localStorage.removeItem('userName');
 
     this.snackBar('You are logged out');
     this.router.navigate(['/home']);

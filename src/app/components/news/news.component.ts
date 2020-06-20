@@ -20,17 +20,14 @@ export class NewsComponent implements OnInit {
 
   numDisplayNews: number;
 
-  userName: String;
   constructor(
-    private authServ: AuthService,
+    public authServ: AuthService,
     private newsServ: NewsService,
     private errServ: ErrorHandlerService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private router: Router
-  ) {
-    this.userName = this.authServ.getName();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.numDisplayNews = 10;
