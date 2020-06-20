@@ -42,7 +42,7 @@ export class NewsComponent implements OnInit {
       else if (this.status == 'favorites' && this.authServ.isLoggedIn()) {
         this.getMyFav()
       }
-      else{
+      else {
         this.router.navigate(['/home/news'])
       }
     })
@@ -75,11 +75,11 @@ export class NewsComponent implements OnInit {
             this.displayedNews = [...data.body]
             this.numDisplayNews = 10;
             this.filterDisplayed()
-          }else{
+          } else {
             this.authServ.snackBar(`You don't have any new in your favorite list`, 5000)
-            setTimeout(()=>{
+            setTimeout(() => {
               this.router.navigate(['/home/news'])
-            },5000)
+            }, 5000)
           }
         }
       },
@@ -149,8 +149,14 @@ export class NewsComponent implements OnInit {
         if (data.status == 200) {
           this.authServ.snackBar('New deleted successfully from your favorites list')
           delete newData._id
-          if(this.status == 'favorites'){
+          if (this.status == 'favorites') {
             this.displayedNews.splice(ind, 1)
+            if (this.displayedNews.length == 0) {
+              this.authServ.snackBar(`You don't have any new in your favorite list`, 5000)
+              setTimeout(() => {
+                this.router.navigate(['/home/news'])
+              }, 5000)
+            }
           }
         }
       },
